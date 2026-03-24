@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Footer() {
     return (
         <footer className="bg-[url('/footer.jpg')] text-white p-4 w-full h-[400px] flex flex-col justify-center items-center">
@@ -5,11 +7,11 @@ export default function Footer() {
                 <div className="flex flex-row justify-center items-center w-full h-[60%]">
                     <div className="flex flex-col justify-center items-center w-1/3 h-full">
                         <ul className="">
-                            <li><a href="#">ÚVOD</a></li>
-                            <li><a href="#">E-SHOP</a></li>
-                            <li><a href="#">VINAŘSTVÍ</a></li>
-                            <li><a href="#">BLOG</a></li>
-                            <li><a href="#">KONTAKT</a></li>
+                            <li><Link href="/">ÚVOD</Link></li>
+                            <li><Link href="/eshop">E-SHOP</Link></li>
+                            <li><Link href="/vinarsvi">VINAŘSTVÍ</Link></li>
+                            <li><Link href="/blog">BLOG</Link></li>
+                            <li><Link href="/kontakt">KONTAKT</Link></li>
                         </ul>
                     </div>
                     <div className="flex flex-col justify-center items-center w-1/3 h-full">
@@ -20,9 +22,9 @@ export default function Footer() {
                     </div>
                     <div className="flex flex-col justify-center items-center w-1/3 h-full">
                         <ul className="text-right text-xs">
-                            <li><a href="#">Obchodní podmínky</a></li>
-                            <li><a href="#">Zpracování osobních údajů</a></li>
-                            <li><a href="#">Cookies</a></li>
+                            <li><Link href="/podminky">Obchodní podmínky</Link></li>
+                            <li><Link href="/udaje">Zpracování osobních údajů</Link></li>
+                            <li><Link href="/cookies">Cookies</Link></li>
                         </ul>
                     </div>
                 </div>
