@@ -18,9 +18,9 @@ model Product {
   id        Int      @id @default(autoincrement())
   name      String
   price     Float
-  category  String
-  color     String?
-  sweetness String?
+  category  Category
+  color     Color?
+  sweetness Sweetness?
   region    String?
   country   String?
   alcohol   Float?
@@ -29,5 +29,24 @@ model Product {
   description String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum Category {
+  wine
+  other
+}
+
+enum Color {
+  red
+  pink
+  white
+  none
+}
+
+enum Sweetness {
+  sweet
+  medium
+  mediumdry
+  dry
 }
 

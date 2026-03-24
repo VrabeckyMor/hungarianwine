@@ -6,9 +6,9 @@ interface Product {
     id: number;
     name: string;
     price: number;
-    category: string;
-    color?: string | null;
-    sweetness?: string | null;
+    category: 'wine' | 'other';
+    color?: 'red' | 'pink' | 'white' | 'none' | null;
+    sweetness?: 'sweet' | 'medium' | 'mediumdry' | 'dry' | null;
     region?: string | null;
     country?: string | null;
     alcohol?: number | null;
@@ -20,9 +20,9 @@ interface Product {
 const initialFormData = {
     name: '',
     price: '',
-    category: '',
-    color: '',
-    sweetness: '',
+    category: 'wine' as 'wine' | 'other',
+    color: 'none' as 'red' | 'pink' | 'white' | 'none',
+    sweetness: 'dry' as 'sweet' | 'medium' | 'mediumdry' | 'dry',
     region: '',
     country: '',
     alcohol: '',
@@ -88,7 +88,7 @@ export default function Admin() {
 
 
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
@@ -104,11 +104,11 @@ export default function Admin() {
                 price: parseFloat(formData.price),
                 alcohol: formData.alcohol ? parseFloat(formData.alcohol) : null,
                 volume: formData.volume ? parseFloat(formData.volume) : null,
-                color: formData.color || null,
+                color: formData.color === 'none' ? null : formData.color,
                 sweetness: formData.sweetness || null,
                 region: formData.region || null,
                 country: formData.country || null,
-                ...(editingId && { id: editingId })
+                ...(editingId && { id: editingId.toString() })
             };
 
             const method = editingId ? 'PUT' : 'POST';
@@ -142,8 +142,8 @@ export default function Admin() {
             name: product.name,
             price: product.price.toString(),
             category: product.category,
-            color: product.color || '',
-            sweetness: product.sweetness || '',
+            color: product.color || 'none',
+            sweetness: product.sweetness || 'dry',
             region: product.region || '',
             country: product.country || '',
             alcohol: product.alcohol?.toString() || '',
@@ -199,14 +199,36 @@ export default function Admin() {
                                     <label className="text-xs font-bold uppercase text-gray-400">Základní informace</label>
                                     <input required name="name" type="text" placeholder="Název produktu *" value={formData.name} onChange={handleInputChange} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition-all" />
                                     <input required name="price" type="number" step="0.01" placeholder="Cena (Kč) *" value={formData.price} onChange={handleInputChange} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition-all" />
-                                    <input required name="category" type="text" placeholder="Kategorie *" value={formData.category} onChange={handleInputChange} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition-all" />
+                                    <div className="space-y-1">
+                                        <label className="text-[10px] font-bold text-gray-400 ml-1">KATEGORIE</label>
+                                        <select required name="category" value={formData.category} onChange={handleInputChange} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none transition-all appearance-none cursor-pointer">
+                                            <option value="wine">Víno</option>
+                                            <option value="other">Ostatní</option>
+                                        </select>
+                                    </div>
                                 </div>
 
                                 <div className="space-y-1 pt-2">
                                     <label className="text-xs font-bold uppercase text-gray-400">Vlastnosti vína</label>
                                     <div className="grid grid-cols-2 gap-2">
-                                        <input name="color" type="text" placeholder="Barva" value={formData.color} onChange={handleInputChange} className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" />
-                                        <input name="sweetness" type="text" placeholder="Sladkost" value={formData.sweetness} onChange={handleInputChange} className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" />
+                                        <div className="space-y-1">
+                                            <label className="text-[10px] font-bold text-gray-400 ml-1 uppercase">Barva</label>
+                                            <select name="color" value={formData.color} onChange={handleInputChange} className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm appearance-none cursor-pointer">
+                                                <option value="none">Žádná</option>
+                                                <option value="red">Červené</option>
+                                                <option value="pink">Růžové</option>
+                                                <option value="white">Bílé</option>
+                                            </select>
+                                        </div>
+                                        <div className="space-y-1">
+                                            <label className="text-[10px] font-bold text-gray-400 ml-1 uppercase">Sladkost</label>
+                                            <select name="sweetness" value={formData.sweetness} onChange={handleInputChange} className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm appearance-none cursor-pointer">
+                                                <option value="dry">Suché</option>
+                                                <option value="mediumdry">Polosuché</option>
+                                                <option value="medium">Polosladké</option>
+                                                <option value="sweet">Sladké</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div className="grid grid-cols-2 gap-2">
                                         <input name="region" type="text" placeholder="Region" value={formData.region} onChange={handleInputChange} className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" />
