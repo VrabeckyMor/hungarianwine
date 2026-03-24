@@ -163,10 +163,6 @@ export default function Nabidka() {
                             </h2>
                             <div className="w-12 h-1 bg-red-600 mb-6"></div>
 
-                            <p className="text-gray-600 text-lg leading-relaxed mb-8 grow">
-                                {selectedProduct.description}
-                            </p>
-
                             <div className="grid grid-cols-2 gap-y-4 gap-x-8 mb-8 bg-gray-50 p-6 rounded-2xl border border-gray-100">
                                 <div>
                                     <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Oblast</p>
@@ -185,6 +181,10 @@ export default function Nabidka() {
                                     <p className="font-bold text-gray-800">{selectedProduct.volume} L</p>
                                 </div>
                             </div>
+
+                            <p className="text-gray-600 text-lg leading-relaxed mb-8 grow">
+                                {selectedProduct.description}
+                            </p>
 
                             <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-auto pt-6 border-t border-gray-100">
                                 <div className="text-center md:text-left">
