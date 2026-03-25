@@ -175,7 +175,7 @@ export default function Nabidka() {
                                 </div>
                                 <div>
                                     <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Sladkost</p>
-                                    <p className="font-bold text-gray-800">{selectedProduct.sweetness || 'Neznámo'}</p>
+                                    <p className="font-bold text-gray-800">{selectedProduct.sweetness === 'dry' ? 'Suché' : selectedProduct.sweetness === 'mediumdry' ? 'Polosuché' : selectedProduct.sweetness === 'medium' ? 'Polosladké' : selectedProduct.sweetness === 'sweet' ? 'Sladké' : 'Neznámo'}</p>
                                 </div>
                                 <div>
                                     <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Alkohol</p>
