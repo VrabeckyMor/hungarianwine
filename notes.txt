@@ -1,0 +1,7 @@
+hotovo kromě:
+    - obchodní podmínky
+    - zpracování osobních údajů
+
+ještě by se hodilo:
+    - popis jak funguje objednávka (přes e-mail nebo telefon)
+    

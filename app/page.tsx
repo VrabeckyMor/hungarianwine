@@ -51,7 +51,7 @@ export default function Page() {
           <p className='w-[95%] mt-5 text-justify text-md'>Všechna naše vína jsou jakostní, 95% z nich jsou s Chráněným označením původu - DHC (Districtus Hungaricus Controllatus). Vína jsou převážně z jižních oblastí - Villány, Szekszárd, Pécs... Vyzkoušejte zajímavé maďarské odrůdy, či poctivě vyrobená vína z klasických odrůd. Naši vinaři kladou důraz na vysokou kvalitu zpracování. Ruční sběr hroznů, žádné herbicidy, insekticidy a umělá hnojiva, zkrátka péče o révu v souladu s přírodou a příprava vína s láskou a odborností.</p>
           <label className='w-[95%] mt-5 text-center text-sm font-bold text-red-600'>Pojďte si objednat něco dobrého!</label>
           <button className='flex flex-row justify-center items-center w-full'>
-            <Link href="/nabidka" className='flex flex-row justify-center items-center w-[60%] text-4xl text-white font-bold border-b-10 border-amber-500 bg-[#ffbb54] p-4 m-4 active:border-white active:translate-y-4 transition-all'>VYBRAT SI</Link>
+            <Link href="/nabidka" className='flex flex-row justify-center items-center w-[60%] text-4xl text-white font-bold rounded-lg bg-[#ffbb54] p-4 m-4 active:translate-y-4 transition-all'>VYBRAT SI</Link>
           </button>
           <h1 className='m-3 mt-5 text-center text-4xl text-[#007A37] p-1 border-b-2 border-red-600'>NAŠE VINAŘSTVÍ</h1>
           <div className='flex flex-wrap justify-center items-center w-full'>
