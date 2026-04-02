@@ -269,7 +269,7 @@ export default function Home() {
                                     Půda a klimatické podmínky vinice jsou velmi podobné Burgundsku, zejména stabilní teplota a mírné počasí, které jsou nezbytné pro výrobu kvalitního vína. Se svými 143 hektary je druhým největším vinařstvím ve vinařské oblasti Etyek-Buda.
                                 </p>
                             </div>
-                            <iframe className="w-full h-auto aspect-video" src="https://www.youtube.com/embed/UQvzLWLAP1s?si=AdqLtjS1KRLxYlnU" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+                            <iframe className="w-full h-auto aspect-video" src="https://www.youtube-nocookie.com/embed/UQvzLWLAP1s?si=AdqLtjS1KRLxYlnU" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
                             <div className="w-full lg:w-2/3 min-w-[300px] p-8 pt-0 lg:p-12">
                                 <h2 className="text-xl text-black mb-4">TŘI RODINY VÍN</h2>
                                 <p className="text-black text-justify text-md font-bold leading-relaxed">

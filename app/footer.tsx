@@ -8,16 +8,16 @@ export default function Footer() {
                     <div className="flex flex-col justify-center items-center w-1/3 h-full">
                         <ul className="">
                             <li><Link href="/">ÚVOD</Link></li>
-                            <li><Link href="/eshop">E-SHOP</Link></li>
-                            <li><Link href="/vinarsvi">VINAŘSTVÍ</Link></li>
+                            <li><Link href="/nabidka">NABÍDKA</Link></li>
+                            <li><Link href="/vinarstvi">VINAŘSTVÍ</Link></li>
                             <li><Link href="/blog">BLOG</Link></li>
                             <li><Link href="/kontakt">KONTAKT</Link></li>
                         </ul>
                     </div>
                     <div className="flex flex-col justify-center items-center w-1/3 h-full">
                         <h2 className="text-xl w-full text-left">KONTAKT</h2>
-                        <p className="text-left text-xs w-full">Email: xxxxxx@hungarianwine.cz</p>
-                        <p className="text-left text-xs w-full">Tel: +420 xxx 502 958</p>
+                        <p className="text-left text-xs w-full">Email: tomas@hungarianwine.cz</p>
+                        <p className="text-left text-xs w-full">Tel: +420 736 502 958</p>
                         <p className="text-left text-xs w-full">Facebook: <a href="https://www.facebook.com/hungarianwine.cz/">hungarianwine.cz</a></p>
                     </div>
                     <div className="flex flex-col justify-center items-center w-1/3 h-full">
