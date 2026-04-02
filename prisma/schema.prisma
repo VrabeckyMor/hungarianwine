@@ -50,3 +50,12 @@ enum Sweetness {
   dry
 }
 
+model Blog {
+  id        Int      @id @default(autoincrement())
+  image     String
+  title     String
+  text      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
