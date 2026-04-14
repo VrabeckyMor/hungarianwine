@@ -26,44 +26,40 @@ export default function CookiesPage() {
             <main className='flex justify-center items-center w-full flex-col'>
                 <div className={isMobile ? "flex flex-col justify-center items-center w-full bg-white" : "flex flex-col justify-center items-center w-[60%] bg-white"}>
                     <h1 className='m-3 mt-5 text-center text-4xl text-[#007A37] p-1 border-b-2 border-red-600 uppercase'>
-                        Informace o ochraně soukromí a souborech cookies
+                        Informace o cookies
                     </h1>
                     
                     <div className="w-full flex-col justify-center items-center min-w-[300px] p-8 lg:p-12 mb-12">
                         <p className="text-black text-justify text-md leading-relaxed">
-                            Tento web je postaven s důrazem na minimalismus a soukromí uživatelů. Snažíme se omezit ukládání dat ve vašem prohlížeči na naprosté minimum.
+                            Tyto webové stránky nepoužívají žádné soubory cookies ani jiné technologie ukládající data do koncového zařízení uživatele.
                         </p>
 
-                        <h2 className="text-xl text-black mb-4 mt-8 font-bold">1. Soubory cookies</h2>
+                        <h2 className="text-xl text-black mb-4 mt-8 font-bold">Co jsou cookies</h2>
                         <p className="text-black text-justify text-md leading-relaxed mt-4">
-                            V současné době web nepoužívá žádné vlastní marketingové ani trackovací cookies.
+                            Cookies jsou malé textové soubory, které webové stránky ukládají do zařízení uživatele za účelem zajištění funkčnosti webu, analýzy návštěvnosti nebo personalizace obsahu.
                         </p>
 
-                        <h2 className="text-xl text-black mb-4 mt-8 font-bold">2. Analytika webu</h2>
+                        <h2 className="text-xl text-black mb-4 mt-8 font-bold">Používání cookies na těchto stránkách</h2>
                         <p className="text-black text-justify text-md leading-relaxed mt-4">
-                            Pro měření návštěvnosti využíváme nástroj Vercel Analytics.
+                            Provozovatel těchto webových stránek prohlašuje, že:
+                        </p>
+                        <ul className="list-disc list-inside text-black text-justify text-md leading-relaxed mt-4 space-y-2">
+                            <li>neukládá žádné cookies (ani technické, ani analytické či marketingové),</li>
+                            <li>nepoužívá žádné nástroje třetích stran, které by cookies ukládaly,</li>
+                            <li>nesleduje chování uživatelů na těchto stránkách.</li>
+                        </ul>
+
+                        <h2 className="text-xl text-black mb-4 mt-8 font-bold">Právní rámec</h2>
+                        <p className="text-black text-justify text-md leading-relaxed mt-4">
+                            Podle české legislativy je ukládání cookies (s výjimkou nezbytných technických) možné pouze na základě předchozího souhlasu uživatele (tzv. režim opt-in).
                         </p>
                         <p className="text-black text-justify text-md leading-relaxed mt-4">
-                            Tato služba nepoužívá cookies ani nesleduje vaši historii napříč jinými weby.
-                        </p>
-                        <p className="text-black text-justify text-md leading-relaxed mt-4">
-                            Veškerá data jsou anonymizována a slouží nám pouze k technickému vylepšování webu a sledování celkového počtu návštěv.
+                            Pokud web cookies nepoužívá, nevzniká povinnost získávat souhlas prostřednictvím cookie lišty. Provozovatel však i v takovém případě poskytuje transparentní informaci o této skutečnosti.
                         </p>
 
-                        <h2 className="text-xl text-black mb-4 mt-8 font-bold">3. Služby třetích stran (YouTube)</h2>
+                        <h2 className="text-xl text-black mb-4 mt-8 font-bold">Ochrana osobních údajů</h2>
                         <p className="text-black text-justify text-md leading-relaxed mt-4">
-                            Na webu se nachází vložená videa ze služby YouTube. Abychom chránili vaše soukromí, používáme tzv. režim zvýšeného soukromí (doména youtube-nocookie.com).
-                        </p>
-                        <p className="text-black text-justify text-md leading-relaxed mt-4">
-                            <strong>Před spuštěním:</strong> YouTube do vašeho zařízení neukládá žádné cookies.
-                        </p>
-                        <p className="text-black text-justify text-md leading-relaxed mt-4">
-                            <strong>Po spuštění:</strong> Jakmile video přehrajete, může si společnost Google (provozovatel YouTube) uložit technické cookies nezbytné pro fungování přehrávače a zapamatování vašich preferencí v rámci této služby.
-                        </p>
-
-                        <h2 className="text-xl text-black mb-4 mt-8 font-bold">4. Proč zde není souhlasná lišta?</h2>
-                        <p className="text-black text-justify text-md leading-relaxed mt-4">
-                            Vzhledem k tomu, že web nepoužívá žádné sledovací skripty vyžadující předchozí souhlas (dle legislativy EU a ČR), není nutné vás obtěžovat vyskakovacím oknem.
+                            Protože tyto stránky nevyužívají cookies ani jiné sledovací technologie, nedochází tímto způsobem ke zpracování osobních údajů uživatelů.
                         </p>
                     </div>
 

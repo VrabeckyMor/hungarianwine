@@ -26,20 +26,17 @@ export default function Home() {
                 <div className={isMobile ? "flex flex-col justify-center items-center w-full bg-white" : "flex flex-col justify-center items-center w-[60%] bg-white"}>
                     <h1 className='m-3 mt-5 text-center text-4xl text-[#007A37] p-1 border-b-2 border-red-600'>NAŠE VINAŘSTVÍ</h1>
                     <div className='flex flex-wrap justify-center items-center w-full'>
-                        <div className='w-[300px] h-[300px] bg-[url("/polgar.jpg")] bg-cover bg-[75%_center] m-4 relative'>
+                        <div className='w-[400px] h-[400px] bg-[url("/polgar.jpg")] bg-cover bg-[75%_center] m-4 relative'>
                             <Link href="#polgar" className='absolute inset-0 bg-black/40 flex justify-center items-center text-white text-2xl text-center p-2'>POLGÁR</Link>
                         </div>
-                        <div className='w-[300px] h-[300px] bg-[url("/fekete.jpg")] bg-cover bg-[75%_center] m-4 relative'>
+                        <div className='w-[400px] h-[400px] bg-[url("/fekete.jpg")] bg-cover bg-[75%_center] m-4 relative'>
                             <Link href="#fekete" className='absolute inset-0 bg-black/40 flex justify-center items-center text-white text-2xl text-center p-2'>FEKETE</Link>
                         </div>
-                        <div className='w-[300px] h-[300px] bg-[url("/cseri.jpg")] bg-cover bg-[50%_center] m-4 relative'>
+                        <div className='w-[400px] h-[400px] bg-[url("/cseri.jpg")] bg-cover bg-[50%_center] m-4 relative'>
                             <Link href="#cseri" className='absolute inset-0 bg-black/40 flex justify-center items-center text-white text-2xl text-center p-2'>VINAŘSTVÍ CSERI</Link>
                         </div>
-                        <div className='w-[300px] h-[300px] bg-[url("/schunk.jpg")] bg-cover bg-[75%_center] m-4 relative'>
+                        <div className='w-[400px] h-[400px] bg-[url("/schunk.jpg")] bg-cover bg-[75%_center] m-4 relative'>
                             <Link href="#schunk" className='absolute inset-0 bg-black/40 flex justify-center items-center text-white text-2xl text-center p-2'>VINNÝ SKLEP SCHUNK</Link>
-                        </div>
-                        <div className='w-[300px] h-[300px] bg-[url("/haraszthy.jpg")] bg-cover bg-[55%_center] m-4 relative'>
-                            <Link href="#haraszthy" className='absolute inset-0 bg-black/40 flex justify-center items-center text-white text-2xl text-center p-2'>VINICE HARASZTHY</Link>
                         </div>
                     </div>
                     <div className="flex flex-col justify-center items-center w-full mt-10">
@@ -238,70 +235,6 @@ export default function Home() {
                                 <Image
                                     src="/schunk_popis2.jpg"
                                     alt="Schunk"
-                                    width={1080}
-                                    height={1080}
-                                    className="object-cover w-full p-4"
-                                />
-                            </div>
-                        </div>
-
-                        <div id="haraszthy" className="flex flex-wrap justify-center items-stretch w-full lg:w-[90%]">
-                            <div className="w-full lg:w-2/3 min-w-[200px]">
-                                <Image
-                                    src="/haraszthy.jpg"
-                                    alt="Haraszthy"
-                                    width={1504}
-                                    height={704}
-                                    className="object-cover w-full h-full"
-                                />
-                            </div>
-                            <div className="flex flex-col justify-center items-center w-full lg:w-1/3 bg-[#007A37] min-w-[200px] p-8 lg:p-12">
-                                <h2 className="text-2xl text-white mb-4">VINICE HARASZTHY NOVÁ CHUŤ TRADICE</h2>
-                                <p className="text-white text-center text-md leading-relaxed">
-                                    Vinice Haraszthy je mezinárodní vinařství vyrábějící vysoce kvalitní vína spojením maďarských vinařských tradic s argentinskou virtuozitou a moderní technologií. Bylo založeno v roce 1996 v obci Etyek v Maďarsku, která je považována za jednu z nejlepších viničných obcí v Maďarsku.
-                                </p>
-                            </div>
-                            <div className="flex flex-col justify-center items-center w-full min-w-[300px] p-8 lg:p-12">
-                                <p className="text-black text-justify text-md leading-relaxed">
-                                    Vinařství je pojmenováno po Ágostonu Haraszthy, maďarském průkopníkovi, který objevil velké možnosti vinaření na území Kalifornie, kde zavedl více než tři sta odrůd evropských hroznů. Často je označován jako „otec kalifornského vinařství“. Vinařství Haraszthy je zasvěceno jeho neuvěřitelnému životnímu odkazu.
-                                </p>
-                                <p className="text-black text-justify text-md leading-relaxed mt-4">
-                                    Půda a klimatické podmínky vinice jsou velmi podobné Burgundsku, zejména stabilní teplota a mírné počasí, které jsou nezbytné pro výrobu kvalitního vína. Se svými 143 hektary je druhým největším vinařstvím ve vinařské oblasti Etyek-Buda.
-                                </p>
-                            </div>
-                            <iframe className="w-full h-auto aspect-video" src="https://www.youtube-nocookie.com/embed/UQvzLWLAP1s?si=AdqLtjS1KRLxYlnU" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
-                            <div className="w-full lg:w-2/3 min-w-[300px] p-8 pt-0 lg:p-12">
-                                <h2 className="text-xl text-black mb-4">TŘI RODINY VÍN</h2>
-                                <p className="text-black text-justify text-md font-bold leading-relaxed">
-                                    Produkce představuje ročně asi 250 000 lahví vín, rozdělených do tří rodin:
-                                </p>
-                                <p className="text-black text-justify text-md leading-relaxed mt-4">
-                                    <b>Haraszthy</b> je základní rodina vín vyrobených reduktivní technologií. Tato vína jsou lehká, dobře strukturovaná a elegantní s bohatostí vůní, dynamikou a svěžestí.
-                                </p>
-                                <p className="text-black text-justify text-md leading-relaxed mt-4">
-                                    Členové rodiny <b>Virtuoso</b> zrají v dubových sudech, což přispívá k plné a komplexní chuti. Jsou uváděny spotřebitelům po 2 letém zrání.
-                                </p>
-                                <p className="text-black text-justify text-md leading-relaxed mt-4">
-                                    A konečně, rodina <b>Fantástico</b> představuje tu nejlepší kvalitu. Do těchto výjimečných vín přicházejí pouze ty nejlepší ročníky pečlivě vybraných hroznů. Víno z této rodiny by mělo před konzumací zrát nejméně tři až pět let, aby mohlo být vychutnáno ve své vrcholné formě.
-                                </p>
-                                <p className="text-black text-justify text-md leading-relaxed mt-4">
-                                    Součástí nabídky jsou také vynikající vína ze sesterských vinařství z Kalifornie a Argentiny. Od letošního ročníku bude vinařství vyrábět Malbec již z úrody svých maďarských vinic, které osázeli touto odrůdou před 5 lety.
-                                </p>
-                                <p className="text-black text-justify text-md leading-relaxed mt-4 font-bold">
-                                    Jedno z určujících vín vinařství se jmenuje Sir Irsai, obsahující 90% Irsai Olivér a 10% Királyleányka.
-                                </p>
-                            </div>
-                            <div className="w-full flex-col justify-center items-center lg:w-1/3 min-w-[300px] mt-10">
-                                <Image
-                                    src="/fekete_popis1.jpg"
-                                    alt="Fekete"
-                                    width={1080}
-                                    height={1080}
-                                    className="object-cover w-full p-4"
-                                />
-                                <Image
-                                    src="/fekete_popis2.jpg"
-                                    alt="Fekete"
                                     width={1080}
                                     height={1080}
                                     className="object-cover w-full p-4"

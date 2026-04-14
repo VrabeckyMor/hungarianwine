@@ -22,8 +22,8 @@ export default function Footer() {
                     </div>
                     <div className="flex flex-col justify-center items-center w-1/3 h-full">
                         <ul className="text-right text-xs">
-                            <li><Link href="/podminky">Obchodní podmínky</Link></li>
-                            <li><Link href="/udaje">Zpracování osobních údajů</Link></li>
+                            <li><a href="/obchodni_podminky.pdf" target="_blank" rel="noopener noreferrer">Obchodní podmínky</a></li>
+                            <li><a href="/zasady_ochrany.pdf" target="_blank" rel="noopener noreferrer">Zpracování osobních údajů</a></li>
                             <li><Link href="/cookies">Cookies</Link></li>
                         </ul>
                     </div>
