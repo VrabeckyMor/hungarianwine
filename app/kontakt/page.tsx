@@ -27,8 +27,8 @@ export default function Kontakt() {
                     <div className={isMobile ? "flex flex-col justify-center items-center w-full bg-white p-3" : "flex flex-wrap justify-center items-center w-[40%] bg-white"}>
                         <div className="w-full flex-col justify-center items-center">
                             <h1 className={isMobile ? "text-2xl text-[#007A37]" : "text-3xl text-[#007A37]"}>HUNGARIAN WINE</h1>
-                            <p className="p-2">E-MAIL <br /> info@hungarianwine.cz</p>
-                            <p className="p-2">TELEFON <br /> +420 722 222 222</p>
+                            <p className="p-2">E-MAIL <br /> tomas@hungarianwine.cz</p>
+                            <p className="p-2">TELEFON <br /> +420 736 502 958</p>
                             <p className="p-2">PONDĚLÍ - PÁTEK <br /> Od 9:00 do 18:00</p>
                         </div>
                     </div>
