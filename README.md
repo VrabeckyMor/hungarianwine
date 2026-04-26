@@ -1,3 +1,8 @@
+## Dev Info
+This site was remake of older version with the same color palette and UI. 
+Different is only architecture, deploy method and cookies analysis.
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
