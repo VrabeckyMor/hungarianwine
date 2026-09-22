@@ -1,6 +1,22 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/db";
 
+// Produkt drží seznam obrázků v `images`; `image` zůstává hlavní (první) obrázek
+// kvůli starším záznamům a místům, která čekají jediný řetězec.
+function normalizeImages<T extends Record<string, unknown>>(data: T) {
+    const raw = Array.isArray(data.images) ? (data.images as unknown[]) : [];
+    const images = raw
+        .filter((url): url is string => typeof url === "string")
+        .map((url) => url.trim())
+        .filter(Boolean);
+
+    if (images.length === 0 && typeof data.image === "string" && data.image.trim()) {
+        images.push(data.image.trim());
+    }
+
+    return { ...data, images, image: images[0] ?? "" };
+}
+
 export async function GET() {
     try {
         const products = await prisma.product.findMany();
@@ -13,7 +29,7 @@ export async function GET() {
 
 export async function POST(request: Request) {
     try {
-        const data = await request.json();
+        const data = normalizeImages(await request.json());
         console.log("Attempting to create product with data:", JSON.stringify(data, null, 2));
         const product = await prisma.product.create({ data });
         return NextResponse.json(product, { status: 201 });
@@ -25,7 +41,8 @@ export async function POST(request: Request) {
 export async function PUT(request: Request) {
     try {
         const data = await request.json();
-        const { id, createdAt, updatedAt, ...updateData } = data;
+        const { id, createdAt, updatedAt, ...rest } = data;
+        const updateData = normalizeImages(rest);
 
         if (!id) {
             return NextResponse.json({ error: "ID is required for update" }, { status: 400 });

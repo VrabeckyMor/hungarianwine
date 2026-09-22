@@ -1,7 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { renderRichText } from '@/lib/richtext';
+import { useState, useEffect, useCallback } from 'react';
+import { productImages } from '@/lib/images';
+import ImageUrlFields from '../components/ImageUrlFields';
+import ProductDetail from '../components/ProductDetail';
 
 interface Product {
     id: number;
@@ -15,6 +17,7 @@ interface Product {
     alcohol?: number | null;
     volume?: number | null;
     image: string;
+    images?: string[] | null;
     description: string;
 }
 
@@ -36,7 +39,7 @@ const initialFormData = {
     country: '',
     alcohol: '',
     volume: '',
-    image: '',
+    images: [''] as string[],
     description: '',
 };
 
@@ -62,6 +65,12 @@ export default function Admin() {
     const [loading, setLoading] = useState(false);
     const [message, setMessage] = useState({ text: '', type: '' });
     const [authorized, setAuthorized] = useState(false);
+    const [showPreview, setShowPreview] = useState(false);
+
+    const handleImagesChange = useCallback((images: string[]) => {
+        setFormData((prev) => ({ ...prev, images }));
+    }, []);
+
 
     const fetchData = async () => {
         try {
@@ -126,8 +135,16 @@ export default function Admin() {
         setMessage({ text: '', type: '' });
 
         try {
+            const images = formData.images.map((url) => url.trim()).filter(Boolean);
+            if (images.length === 0) {
+                setMessage({ text: 'Přidej alespoň jeden obrázek', type: 'error' });
+                return;
+            }
+
             const payload = {
                 ...formData,
+                images,
+                image: images[0],
                 price: parseFloat(formData.price),
                 alcohol: formData.alcohol ? parseFloat(formData.alcohol) : null,
                 volume: formData.volume ? parseFloat(formData.volume) : null,
@@ -212,7 +229,7 @@ export default function Admin() {
             country: product.country || '',
             alcohol: product.alcohol?.toString() || '',
             volume: product.volume?.toString() || '',
-            image: product.image,
+            images: productImages(product).length > 0 ? productImages(product) : [''],
             description: product.description,
         });
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -257,6 +274,7 @@ export default function Admin() {
 
     const resetForm = () => {
         setFormData(initialFormData);
+        setShowPreview(false);
         setEditingId(null);
         setBlogData(initialBlogData);
         setEditingBlogId(null);
@@ -322,21 +340,18 @@ export default function Admin() {
                                         <input name="alcohol" type="number" step="0.1" placeholder="Alkohol %" value={formData.alcohol} onChange={handleInputChange} className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" />
                                         <input name="volume" type="number" step="0.01" placeholder="Objem (l)" value={formData.volume} onChange={handleInputChange} className="w-full p-2.5 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" />
                                     </div>
-                                    <input required name="image" type="text" placeholder="URL obrázku *" value={formData.image} onChange={handleInputChange} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" />
+                                    <ImageUrlFields values={formData.images} onChange={handleImagesChange} />
                                     <textarea required name="description" rows={3} placeholder="Popis vína *" value={formData.description} onChange={handleInputChange} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm resize-none" />
                                     <p className="text-[11px] text-gray-400 leading-relaxed">
                                         V popisu můžeš použít tagy: <code>&lt;b&gt;tučně&lt;/b&gt;</code>, <code>&lt;i&gt;kurzíva&lt;/i&gt;</code>, <code>&lt;u&gt;podtržení&lt;/u&gt;</code>, <code>&lt;s&gt;přeškrtnutí&lt;/s&gt;</code>, <code>&lt;br&gt;</code> (nový řádek), <code>&lt;hr&gt;</code> (čára). Ostatní tagy se zobrazí jako obyčejný text.
                                     </p>
-                                    {formData.description && (
-                                        <div className="p-3 bg-white border border-dashed border-gray-200 rounded-xl">
-                                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Náhled popisu</p>
-                                            <p className="text-sm text-gray-600 leading-relaxed">{renderRichText(formData.description)}</p>
-                                        </div>
-                                    )}
                                 </div>
                                 <div className="mt-6 flex flex-col gap-2">
                                     <button disabled={loading} type="submit" className={`w-full py-4 rounded-xl font-bold text-white shadow-lg transition-all ${loading ? 'bg-gray-400' : 'bg-emerald-600 hover:bg-emerald-700'}`}>
                                         {loading ? 'Pracuji...' : editingId ? 'Uložit změny' : 'Přidat produkt'}
+                                    </button>
+                                    <button type="button" onClick={() => setShowPreview(true)} className="w-full py-3 rounded-xl font-bold text-emerald-700 border-2 border-emerald-600 hover:bg-emerald-50 transition-all">
+                                        Zobrazit náhled produktu
                                     </button>
                                     {editingId && <button type="button" onClick={resetForm} className="text-gray-500 py-2">Zrušit úpravy</button>}
                                 </div>
@@ -464,6 +479,30 @@ export default function Admin() {
                     </div>
                 </div>
             </div>
+
+            {/* Náhled produktu - stejná komponenta, jakou uvidí zákazník */}
+            {showPreview && (
+                <div
+                    className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 bg-black/80 backdrop-blur-sm"
+                    onClick={() => setShowPreview(false)}
+                >
+                    <ProductDetail
+                        product={{
+                            name: formData.name || 'Bez názvu',
+                            price: parseFloat(formData.price) || 0,
+                            category: formData.category,
+                            images: formData.images.map((url) => url.trim()).filter(Boolean),
+                            description: formData.description,
+                            region: formData.region,
+                            country: formData.country,
+                            sweetness: formData.sweetness,
+                            alcohol: formData.alcohol ? parseFloat(formData.alcohol) : null,
+                            volume: formData.volume ? parseFloat(formData.volume) : null,
+                        }}
+                        onClose={() => setShowPreview(false)}
+                    />
+                </div>
+            )}
         </div>
     );
 }

@@ -6,7 +6,9 @@ import Top from '../top';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { renderRichText } from '@/lib/richtext';
+import { productImages } from '@/lib/images';
+import ImageCarousel from '../components/ImageCarousel';
+import ProductDetail from '../components/ProductDetail';
 
 interface Product {
     id: number;
@@ -14,6 +16,7 @@ interface Product {
     price: number;
     category: string;
     image: string;
+    images?: string[] | null;
     description: string;
     region?: string | null;
     color?: string | null;
@@ -90,14 +93,13 @@ export default function Nabidka() {
                                 onClick={() => setSelectedProduct(product)}
                                 className="relative group bg-white border border-gray-100 flex flex-col items-center cursor-pointer"
                             >
-                                <div className="w-full aspect-square overflow-hidden bg-gray-50 border-b border-gray-100">
-                                    <img
-                                        src={product.image}
-                                        alt={product.name}
-                                        className="w-full h-full object-cover grayscale-20"
-                                        onError={(e) => ((e.target as HTMLImageElement).src = 'https://placehold.co/400x400?text=Wine')}
-                                    />
-                                </div>
+                                <ImageCarousel
+                                    images={productImages(product)}
+                                    alt={product.name}
+                                    className="w-full aspect-square overflow-hidden bg-gray-50 border-b border-gray-100"
+                                    imageClassName="w-full h-full object-cover grayscale-20"
+                                    fallback="https://placehold.co/400x400?text=Wine"
+                                />
                                 <div className="w-full p-4 flex flex-col items-center text-center">
                                     <span className="text-[10px] uppercase tracking-[0.2em] text-emerald-600 font-bold mb-1">
                                         {product.category}
@@ -129,83 +131,7 @@ export default function Nabidka() {
                     className="fixed inset-0 z-50 flex items-center justify-center p-0 md:p-4 bg-black/80 backdrop-blur-sm transition-all animate-in fade-in duration-300"
                     onClick={() => setSelectedProduct(null)}
                 >
-                    <div
-                        className="bg-white w-full h-full md:h-auto md:max-w-4xl md:rounded-3xl shadow-2xl overflow-y-auto md:overflow-hidden relative flex flex-col md:flex-row transition-all animate-in zoom-in-95 duration-300"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        {/* Close button */}
-                        <button
-                            onClick={() => setSelectedProduct(null)}
-                            className="absolute top-4 right-4 z-10 p-3 bg-white/90 md:bg-gray-100 hover:bg-red-50 text-gray-800 hover:text-red-600 rounded-full md:rounded-xl transition-all shadow-lg md:shadow-none"
-                            aria-label="Zavřít"
-                        >
-                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-
-                        {/* Image Panel */}
-                        <div className="w-full md:w-1/2 aspect-square md:aspect-auto bg-gray-100">
-                            <img
-                                src={selectedProduct.image}
-                                alt={selectedProduct.name}
-                                className="w-full h-full object-cover"
-                                onError={(e) => ((e.target as HTMLImageElement).src = 'https://placehold.co/800x800?text=Wine')}
-                            />
-                        </div>
-
-                        {/* Content Panel */}
-                        <div className="w-full md:w-1/2 p-6 md:p-10 flex flex-col md:overflow-y-auto md:max-h-[80vh]">
-                            <span className="text-xs uppercase tracking-[0.3em] text-emerald-600 font-bold mb-2">
-                                {selectedProduct.category}
-                            </span>
-                            <h2 className="text-3xl md:text-4xl font-black text-gray-900 mb-2 leading-tight">
-                                {selectedProduct.name}
-                            </h2>
-                            <div className="w-12 h-1 bg-red-600 mb-4"></div>
-
-                            <div className="mb-6">
-                                <p className="text-sm text-gray-400 font-medium">Cena s DPH</p>
-                                <p className="text-3xl font-black text-[#007A37]">{selectedProduct.price} Kč</p>
-                            </div>
-
-                            <div className="grid grid-cols-2 gap-y-4 gap-x-8 mb-8 bg-gray-50 p-6 rounded-2xl border border-gray-100">
-                                <div>
-                                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Oblast</p>
-                                    <p className="font-bold text-gray-800">{selectedProduct.region || 'Neznámo'}</p>
-                                </div>
-                                <div>
-                                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Sladkost</p>
-                                    <p className="font-bold text-gray-800">{selectedProduct.sweetness === 'dry' ? 'Suché' : selectedProduct.sweetness === 'mediumdry' ? 'Polosuché' : selectedProduct.sweetness === 'medium' ? 'Polosladké' : selectedProduct.sweetness === 'sweet' ? 'Sladké' : 'Neznámo'}</p>
-                                </div>
-                                <div>
-                                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Alkohol</p>
-                                    <p className="font-bold text-gray-800">{selectedProduct.alcohol}%</p>
-                                </div>
-                                <div>
-                                    <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Objem</p>
-                                    <p className="font-bold text-gray-800">{selectedProduct.volume} L</p>
-                                </div>
-                            </div>
-
-                            <p className="text-gray-600 text-lg leading-relaxed mb-8 grow">
-                                {renderRichText(selectedProduct.description)}
-                            </p>
-
-                            <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-auto pt-6 border-t border-gray-100">
-                                <div className="text-center md:text-left">
-                                    <p className="text-sm text-gray-400 font-medium">Cena s DPH</p>
-                                    <p className="text-3xl font-black text-[#007A37]">{selectedProduct.price} Kč</p>
-                                </div>
-                                <button
-                                    onClick={() => setSelectedProduct(null)}
-                                    className="w-full md:w-auto px-10 py-4 bg-gray-900 text-white font-bold rounded-xl hover:bg-emerald-800 transition-colors shadow-xl"
-                                >
-                                    Zavřít detail
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                    <ProductDetail product={selectedProduct} onClose={() => setSelectedProduct(null)} />
                 </div>
             )}
         </div>
