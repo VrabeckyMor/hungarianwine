@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { renderRichText } from '@/lib/richtext';
 
 interface Product {
     id: number;
@@ -323,6 +324,15 @@ export default function Admin() {
                                     </div>
                                     <input required name="image" type="text" placeholder="URL obrázku *" value={formData.image} onChange={handleInputChange} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm" />
                                     <textarea required name="description" rows={3} placeholder="Popis vína *" value={formData.description} onChange={handleInputChange} className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 outline-none text-sm resize-none" />
+                                    <p className="text-[11px] text-gray-400 leading-relaxed">
+                                        V popisu můžeš použít tagy: <code>&lt;b&gt;tučně&lt;/b&gt;</code>, <code>&lt;i&gt;kurzíva&lt;/i&gt;</code>, <code>&lt;u&gt;podtržení&lt;/u&gt;</code>, <code>&lt;s&gt;přeškrtnutí&lt;/s&gt;</code>, <code>&lt;br&gt;</code> (nový řádek), <code>&lt;hr&gt;</code> (čára). Ostatní tagy se zobrazí jako obyčejný text.
+                                    </p>
+                                    {formData.description && (
+                                        <div className="p-3 bg-white border border-dashed border-gray-200 rounded-xl">
+                                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Náhled popisu</p>
+                                            <p className="text-sm text-gray-600 leading-relaxed">{renderRichText(formData.description)}</p>
+                                        </div>
+                                    )}
                                 </div>
                                 <div className="mt-6 flex flex-col gap-2">
                                     <button disabled={loading} type="submit" className={`w-full py-4 rounded-xl font-bold text-white shadow-lg transition-all ${loading ? 'bg-gray-400' : 'bg-emerald-600 hover:bg-emerald-700'}`}>

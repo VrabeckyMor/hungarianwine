@@ -6,6 +6,7 @@ import Top from '../top';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { renderRichText } from '@/lib/richtext';
 
 interface Product {
     id: number;
@@ -188,7 +189,7 @@ export default function Nabidka() {
                             </div>
 
                             <p className="text-gray-600 text-lg leading-relaxed mb-8 grow">
-                                {selectedProduct.description}
+                                {renderRichText(selectedProduct.description)}
                             </p>
 
                             <div className="flex flex-col md:flex-row items-center justify-between gap-4 mt-auto pt-6 border-t border-gray-100">
